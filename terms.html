@@ -1,167 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — Sadhana App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service — Sadhana</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #FAF6F0;
-      color: #2C1A0E;
-      line-height: 1.7;
+    @import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap');
+    :root {
+      --color-bg: #f5ead8; --color-surface: #ebddc5; --color-text: #201e1d;
+      --color-accent: #c67139; --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+      --color-accent-700: #8c491a; --color-accent-800: #643312;
+      --font-heading: "Caprasimo", system-ui, sans-serif; --font-heading-weight: 400;
+      --font-body: "Figtree", system-ui, sans-serif;
+      --space-2: 8.8px; --space-3: 13.2px; --space-4: 17.6px;
+      --space-6: 26.4px; --space-7: 30.8px; --space-8: 35.2px;
     }
-    header {
-      background: #1A0A2E;
-      color: #F5EFE6;
-      padding: 24px 20px;
-      text-align: center;
-    }
-    header .symbol { font-size: 32px; }
-    header h1 { font-size: 1.4rem; font-weight: 700; color: #FF6B00; margin-top: 8px; }
-    header p { font-size: 0.85rem; color: #C4A882; margin-top: 4px; }
-    .container { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
-    .meta {
-      background: #FFF8F0;
-      border: 1px solid #F0DCC8;
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-bottom: 36px;
-      font-size: 0.85rem;
-      color: #7A5C3C;
-    }
-    .meta strong { color: #4A2C0E; }
-    h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #1A0A2E;
-      margin: 36px 0 12px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #FF6B00;
-      display: inline-block;
-    }
-    h3 { font-size: 1rem; font-weight: 600; color: #4A2C0E; margin: 20px 0 8px; }
-    p { margin-bottom: 12px; }
-    ul, ol { padding-left: 24px; margin-bottom: 12px; }
-    ul li, ol li { margin-bottom: 6px; }
-    .disclaimer {
-      background: #FFF8F0;
-      border-left: 4px solid #FF6B00;
-      padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
-      margin: 12px 0;
-      font-style: italic;
-    }
-    strong { color: #1A0A2E; }
-    a { color: #FF6B00; }
-    .back { display: inline-block; margin-bottom: 24px; color: #FF6B00; text-decoration: none; font-size: 0.9rem; }
-    .back:hover { text-decoration: underline; }
-    footer { text-align: center; color: #9E8A72; font-size: 0.78rem; margin-top: 48px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); text-wrap: pretty; }
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); line-height: 1.12; letter-spacing: -0.015em; }
+    p { margin: 0 0 var(--space-3); }
+    a { color: var(--color-accent-700); text-decoration: none; }
+    a:hover { color: var(--color-accent-800); text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+    h2 { font-size: 22px; margin: var(--space-7) 0 var(--space-3); }
+    h3 { font-size: 16px; margin: var(--space-4) 0 var(--space-2); }
+    p, li { font-size: 15px; line-height: 1.7; color: color-mix(in srgb, var(--color-text) 84%, transparent); }
+    ul { padding-left: 22px; margin: var(--space-2) 0; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="symbol">🕉️</div>
-    <h1>Terms of Service</h1>
-    <p>Sadhana — Your Daily Spiritual Practice</p>
-  </header>
-
-  <div class="container">
-    <a href="index.html" class="back">← Back</a>
-
-    <div class="meta">
-      <strong>Effective date:</strong> 12 March 2026 &nbsp;·&nbsp;
-      <strong>Last updated:</strong> 12 March 2026<br/>
-      <strong>Developer:</strong> Pavan Nagendra &nbsp;·&nbsp;
-      <strong>Contact:</strong> <a href="mailto:support@sadhana.app">support@sadhana.app</a>
-    </div>
+  <nav style="display:flex;align-items:center;gap:10px;padding:var(--space-4) clamp(20px,5vw,64px);border-bottom:1px solid var(--color-divider);">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;color:inherit;">
+      <img src="app_logo.jpg" alt="Sadhana logo" style="width:30px;height:30px;border-radius:50%;object-fit:cover;">
+      <span style="font-family:var(--font-heading);font-size:18px;">Sadhana</span>
+    </a>
+  </nav>
+  <main style="max-width:720px;margin:0 auto;padding:var(--space-4) clamp(20px,5vw,64px) clamp(56px,8vw,96px);">
+    <a href="index.html" style="font-size:13px;">← Back to Sadhana</a>
+    <h1 style="font-size:clamp(30px,4vw,40px);margin:var(--space-4) 0 var(--space-2);">Terms of Service</h1>
+    <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 65%, transparent);margin:0 0 var(--space-6);">Effective date: 12 March 2026 · Last updated: 12 March 2026<br>Sadhana App · Contact: <a href="mailto:support@sadhana.app">support@sadhana.app</a></p>
 
     <h2>1. Acceptance of Terms</h2>
-    <p>By downloading, installing, or using Sadhana ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+    <p>By downloading, installing, or using Sadhana ("the App"), you agree to be bound by these Terms of Service. If you do not agree, do not use the App.</p>
 
     <h2>2. Description of Service</h2>
-    <p>Sadhana is a Hindu spiritual companion application providing:</p>
-    <ul>
-      <li>Daily Panchang (Hindu calendar) with auspiciousness calculations</li>
-      <li>Japa (mantra repetition) counter with mala tracking</li>
-      <li>Bhagavad Gita shlokas, mantras, stotras, aartis, and spiritual quotes</li>
-      <li>Personalized spiritual guidance based on Vedic astrology principles</li>
-      <li>Daily spiritual routine planner and reminders</li>
-    </ul>
-    <p>The App is intended for personal spiritual practice and educational purposes only.</p>
+    <p>Sadhana is a Hindu spiritual companion application providing daily Panchang with auspiciousness calculations, a japa counter with mala tracking, Bhagavad Gita shlokas, mantras, stotras, aartis and spiritual quotes, personalized guidance based on Vedic astrology principles, and a daily spiritual routine planner with reminders. The App is intended for personal spiritual practice and educational purposes only.</p>
 
     <h2>3. Eligibility</h2>
-    <p>You must be at least 13 years of age to use this App. By using the App, you represent that you are 13 years of age or older.</p>
+    <p>You must be at least 13 years of age to use this App. By using the App, you represent that you meet this requirement.</p>
 
     <h2>4. User Accounts</h2>
-    <p>The App uses anonymous authentication by default — no account or registration is required. You may optionally link an email address to enable cross-device sync and data backup. You are responsible for maintaining the confidentiality of your account credentials.</p>
+    <p>The App uses anonymous authentication by default — no account or registration is required. You may optionally link an email address to enable cross-device sync and backup. You are responsible for keeping your account credentials confidential.</p>
 
     <h2>5. Acceptable Use</h2>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Use the App for any unlawful purpose</li>
-      <li>Reverse engineer, decompile, or disassemble the App</li>
-      <li>Attempt to gain unauthorized access to any part of the App or its backend systems</li>
-      <li>Use the App to distribute spam or malicious content</li>
-      <li>Use automated scripts or bots to access the App</li>
-    </ul>
+    <p>You agree not to: use the App for any unlawful purpose; reverse engineer, decompile or disassemble it; attempt unauthorized access to any part of the App or its backend; distribute spam or malicious content through it; or use automated scripts or bots to access it.</p>
 
     <h2>6. Spiritual Content Disclaimer</h2>
-    <p>The spiritual content in this App (panchang calculations, auspiciousness guidance, nakshatra-based recommendations, mantras, and shlokas) is provided for <strong>informational and spiritual enrichment purposes only</strong>. It is not professional advice of any kind — including but not limited to medical, legal, financial, or psychological advice.</p>
-    <p>Vedic astrological calculations (Tara Balam, Chandra Balam, Panchang) are based on traditional Hindu astronomical methods. The App makes no representation or warranty that such calculations are accurate, complete, or appropriate for any specific purpose.</p>
-    <div class="disclaimer">
-      <strong>We are not liable for any decisions made based on the content of this App.</strong> You are solely responsible for your own choices and actions.
-    </div>
+    <p>The spiritual content in this App — Panchang calculations, auspiciousness guidance, Nakshatra-based recommendations, mantras and shlokas — is provided for informational and spiritual enrichment purposes only. It is not medical, legal, financial or psychological advice.</p>
+    <p>Vedic astrological calculations (Tara Balam, Chandra Balam, Panchang) follow traditional Hindu astronomical methods; we make no warranty that they are accurate, complete, or fit for any specific purpose. We are not liable for decisions made based on the App's content — you are solely responsible for your own choices and actions.</p>
 
     <h2>7. Intellectual Property</h2>
-    <h3>7.1 App Content</h3>
-    <p>The App's software, design, interface, and original content (including the Sadhana name and logo) are owned by the developer and are protected by applicable intellectual property laws.</p>
-
-    <h3>7.2 Traditional Texts</h3>
-    <p>The Bhagavad Gita shlokas, mantras, stotras, aartis, and other classical texts in the App are part of the ancient public domain of Hindu scripture. Translations and transliterations provided in the App are original works of the developer or used under appropriate licenses.</p>
-
-    <h3>7.3 Restrictions</h3>
-    <p>You may not copy, reproduce, distribute, or create derivative works from the App's proprietary content without explicit written permission from the developer. Personal, non-commercial use of the spiritual content for your own practice is permitted.</p>
+    <p><strong>App content:</strong> the App's software, design, interface and original content (including the Sadhana name and logo) are owned by the developer and protected by applicable intellectual property law.</p>
+    <p><strong>Traditional texts:</strong> the Bhagavad Gita shlokas, mantras, stotras, aartis and other classical texts are part of the public domain of Hindu scripture. Translations and transliterations are original works of the developer or used under appropriate license.</p>
+    <p><strong>Restrictions:</strong> you may not copy, reproduce, distribute or create derivative works from the App's proprietary content without explicit written permission. Personal, non-commercial use for your own practice is permitted.</p>
 
     <h2>8. User-Generated Content</h2>
-    <p>The App does not currently allow users to submit or publish content visible to other users. Birth details, preferences, and personal information you enter are private and used solely to personalize your experience (see our Privacy Policy).</p>
+    <p>The App does not currently allow users to submit or publish content visible to other users. Birth details, preferences and personal information you enter are private and used solely to personalize your experience — see our Privacy Policy.</p>
 
     <h2>9. Third-Party Services</h2>
-    <p>The App uses the following third-party services, subject to their own terms:</p>
-    <ul>
-      <li><strong>Supabase</strong> — database and authentication backend</li>
-      <li><strong>Expo / React Native</strong> — app runtime framework</li>
-    </ul>
-    <p>We are not responsible for the practices of these third-party services.</p>
+    <p>The App uses Supabase (database and authentication backend) and Expo / React Native (app runtime framework), each subject to its own terms. We are not responsible for the practices of these third-party services.</p>
 
     <h2>10. Availability and Modifications</h2>
-    <p>We reserve the right to modify, suspend, or discontinue the App at any time, with or without notice. We will endeavour to notify you of material changes via an in-app message.</p>
+    <p>We reserve the right to modify, suspend or discontinue the App at any time, with or without notice, and will endeavour to notify you of material changes in-app.</p>
 
     <h2>11. Disclaimer of Warranties</h2>
-    <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+    <p>The App is provided "as is" and "as available" without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement.</p>
 
     <h2>12. Limitation of Liability</h2>
-    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE DEVELOPER SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE APP.</p>
-    <p>Our total liability to you for any claims shall not exceed INR 500 (Indian Rupees Five Hundred).</p>
+    <p>To the maximum extent permitted by law, the developer shall not be liable for any indirect, incidental, special, consequential or punitive damages arising from your use of the App. Our total liability to you for any claim shall not exceed INR 500.</p>
 
     <h2>13. Indemnification</h2>
-    <p>You agree to indemnify and hold harmless the developer from any claims, losses, damages, liabilities, and expenses (including legal fees) arising from your use of the App or violation of these Terms.</p>
+    <p>You agree to indemnify and hold harmless the developer from any claims, losses, damages, liabilities and expenses (including legal fees) arising from your use of the App or violation of these Terms.</p>
 
     <h2>14. Governing Law and Dispute Resolution</h2>
-    <p>These Terms are governed by the laws of the <strong>Republic of India</strong>. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts at <strong>Bengaluru, Karnataka, India</strong>.</p>
+    <p>These Terms are governed by the laws of the Republic of India. Disputes are subject to the exclusive jurisdiction of the courts at Bengaluru, Karnataka, India.</p>
 
     <h2>15. Contact</h2>
-    <p>
-      <strong>Email:</strong> <a href="mailto:support@sadhana.app">support@sadhana.app</a><br/>
-      <strong>Subject line:</strong> "Terms of Service — [Your Query]"<br/>
-      We aim to respond within 14 business days.
-    </p>
+    <p>Email <a href="mailto:support@sadhana.app">support@sadhana.app</a> with subject "Terms of Service — [Your Query]". We aim to respond within 14 business days.</p>
 
-    <footer>
-      &copy; 2026 Pavan Nagendra &nbsp;·&nbsp; Sadhana App &nbsp;·&nbsp;
-      <a href="privacy.html">Privacy Policy</a>
-    </footer>
-  </div>
+    <p style="margin-top:var(--space-8);font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);">© 2026 Sadhana App · <a href="privacy.html">Privacy Policy</a></p>
+  </main>
 </body>
 </html>

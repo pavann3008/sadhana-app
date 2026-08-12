@@ -1,64 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sadhana — Daily Spiritual Practice</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sadhana — Your Hindu spiritual companion. Mindful Pause, Panchang, japa counter, mantras & temples. Private, on-device, and built with devotion.">
+  <title>Sadhana — Your Spiritual Companion</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&family=Noto+Sans+Devanagari:wght@500;600&display=swap');
+
+    :root {
+      --color-bg: #f5ead8;
+      --color-surface: #ebddc5;
+      --color-text: #201e1d;
+      --color-accent: #c67139;
+      --color-accent-2: #7a8a5e;
+      --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+      --color-neutral-100: #f9f4ed;
+      --color-neutral-200: #eee7db;
+      --color-neutral-300: #dcd3c4;
+      --color-neutral-400: #c0b6a5;
+      --color-neutral-500: #a19786;
+      --color-neutral-600: #82796a;
+      --color-neutral-700: #645c50;
+      --color-neutral-800: #474238;
+      --color-neutral-900: #2e2b25;
+      --color-accent-100: #fff2eb;
+      --color-accent-200: #ffe1d0;
+      --color-accent-300: #ffc6a5;
+      --color-accent-400: #f6a06b;
+      --color-accent-500: #d67f48;
+      --color-accent-600: #b2622d;
+      --color-accent-700: #8c491a;
+      --color-accent-800: #643312;
+      --color-accent-900: #402310;
+      --color-accent-2-100: #f0fae1;
+      --color-accent-2-200: #e1eecc;
+      --color-accent-2-700: #56633f;
+      --font-heading: "Caprasimo", system-ui, sans-serif;
+      --font-heading-weight: 400;
+      --font-body: "Figtree", system-ui, sans-serif;
+      --space-1: 4.4px;
+      --space-2: 8.8px;
+      --space-3: 13.2px;
+      --space-4: 17.6px;
+      --space-6: 26.4px;
+      --space-8: 35.2px;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 28px;
+      --shadow-sm: 0 1px 2px color-mix(in srgb, #2e2b25 14%, transparent);
+      --shadow-md: 0 3px 10px color-mix(in srgb, #2e2b25 16%, transparent);
+      --shadow-lg: 0 12px 32px color-mix(in srgb, #2e2b25 22%, transparent);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #1A0A2E;
-      color: #F5EFE6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
+      margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400;
+      background: var(--color-bg); color: var(--color-text);
+      font-family: var(--font-body); text-wrap: pretty; overflow-x: clip;
     }
-    .symbol { font-size: 64px; margin-bottom: 16px; }
-    h1 { font-size: 2.4rem; font-weight: 700; color: #FF6B00; margin-bottom: 8px; }
-    .tagline { font-size: 1.1rem; color: #C4A882; margin-bottom: 48px; text-align: center; }
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      max-width: 320px;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+      line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
     }
-    .links a {
-      display: block;
-      padding: 14px 24px;
-      border: 1px solid rgba(255,107,0,0.4);
-      border-radius: 12px;
-      color: #F5EFE6;
-      text-decoration: none;
-      text-align: center;
-      font-size: 0.95rem;
-      transition: background 0.2s, border-color 0.2s;
+    h1 { font-size: 42px; }
+    h2 { font-size: 32px; }
+    h3 { font-size: 25px; }
+    h4 { font-size: 20px; }
+    p { margin: 0 0 var(--space-3); }
+    a { color: var(--color-accent-700); text-decoration: none; }
+    a:hover { color: var(--color-accent-800); text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+
+    html { scroll-behavior: smooth; }
+
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes glow-pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+    @media (prefers-reduced-motion: reduce) { [data-anim] { animation: none !important; } }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] summary svg { transform: rotate(180deg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      cursor: pointer; text-decoration: none;
+      font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+      font-size: 14px; line-height: 1.2; color: var(--color-text);
+      background: transparent; border: 1px solid transparent;
+      padding: var(--space-2) calc(var(--space-3) * 1.2);
+      border-radius: 999px;
     }
-    .links a:hover { background: rgba(255,107,0,0.12); border-color: #FF6B00; }
-    footer {
-      margin-top: 60px;
-      font-size: 0.75rem;
-      color: #7A6A5A;
-      text-align: center;
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); }
+    .btn-primary:hover { background: var(--color-accent-600); text-decoration: none; }
+    .btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+    .btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); text-decoration: none; }
+
+    .tag {
+      display: inline-flex; align-items: center; font-size: 11px;
+      letter-spacing: 0.02em; padding: 3px 10px; border-radius: 999px;
     }
+    .tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
+    .tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+
+    .card {
+      display: flex; flex-direction: column; gap: var(--space-2);
+      padding: var(--space-3); border-radius: calc(var(--radius-lg) * 1.15);
+      background: var(--color-surface);
+    }
+    .card-kicker { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); }
+    .card-title { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 17px; line-height: 1.2; }
+    .card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+    .card-meta { display: flex; align-items: center; gap: 6px; font-size: 11px; color: color-mix(in srgb, var(--color-text) 50%, transparent); }
+    .elev-sm { box-shadow: var(--shadow-sm); }
+
+    .phone-ph {
+      width: 190px; height: 412px;
+      border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+      border-radius: 28px;
+      background: color-mix(in srgb, var(--color-bg) 70%, var(--color-neutral-300));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px; position: relative; overflow: hidden;
+    }
+    .phone-ph::before {
+      content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 4px; border-radius: 2px;
+      background: color-mix(in srgb, var(--color-text) 15%, transparent);
+    }
+    .phone-ph-lg {
+      width: 300px; height: 649px;
+      border: 2px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+      border-radius: 44px;
+      background: color-mix(in srgb, var(--color-bg) 70%, var(--color-neutral-300));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px; padding: 24px; position: relative; overflow: hidden;
+    }
+    .phone-ph-lg::before {
+      content: ''; position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 56px; height: 5px; border-radius: 3px;
+      background: color-mix(in srgb, var(--color-text) 15%, transparent);
+    }
+    .phone-ph-dark {
+      background: color-mix(in srgb, var(--color-neutral-900) 85%, var(--color-neutral-800));
+      border-color: color-mix(in srgb, white 12%, transparent);
+    }
+    .phone-ph-dark::before { background: color-mix(in srgb, white 12%, transparent); }
+    .ph-emoji { font-size: 28px; }
+    .ph-label {
+      font-family: var(--font-heading); font-size: 13px; text-align: center;
+      color: color-mix(in srgb, var(--color-text) 55%, transparent);
+    }
+    .ph-dark-label { color: color-mix(in srgb, white 55%, transparent); }
   </style>
 </head>
 <body>
-  <div class="symbol">🕉️</div>
-  <h1>Sadhana</h1>
-  <p class="tagline">Your Daily Spiritual Practice</p>
-  <div class="links">
-    <a href="privacy.html">🔒 Privacy Policy</a>
-    <a href="terms.html">📋 Terms of Service</a>
-    <a href="mailto:support@sadhana.app">✉️ Contact Support</a>
-  </div>
-  <footer>
-    &copy; 2026 Pavan Nagendra &nbsp;·&nbsp; Sadhana App<br/>
-    Bengaluru, Karnataka, India
+
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-4);padding:var(--space-3) clamp(20px,5vw,64px);background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider);">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;margin-right:auto;color:inherit;">
+      <img src="app_logo.jpg" alt="Sadhana logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;">
+      <span style="font-family:var(--font-heading);font-size:19px;">Sadhana</span>
+    </a>
+    <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+      <a href="#mindful-pause" style="color:inherit;font-size:14px;">Mindful Pause</a>
+      <a href="#configure-mindful-pause" style="color:inherit;font-size:14px;">Setup Guide</a>
+      <a href="#features" style="color:inherit;font-size:14px;">Features</a>
+      <a href="#philosophy" style="color:inherit;font-size:14px;">Philosophy</a>
+      <a href="#reviews" style="color:inherit;font-size:14px;">Reviews</a>
+      <a href="#faq" style="color:inherit;font-size:14px;">FAQ</a>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener" class="btn btn-primary">Get the App</a>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="top" style="position:relative;padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);max-width:1280px;margin:0 auto;">
+    <div style="position:absolute;right:-120px;top:-60px;width:380px;height:380px;border-radius:50%;background:var(--color-accent-2-200);filter:blur(50px);opacity:0.55;pointer-events:none;z-index:-1;"></div>
+    <div style="position:absolute;left:-140px;bottom:-100px;width:320px;height:320px;border-radius:50%;background:var(--color-accent-100);filter:blur(60px);opacity:0.6;pointer-events:none;z-index:-1;"></div>
+
+    <div style="text-align:center;margin-bottom:clamp(28px,4vw,44px);">
+      <div style="position:relative;width:132px;height:132px;margin:0 auto 14px;display:grid;place-items:center;">
+        <div data-anim="1" style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--color-accent-300);animation:spin-slow 50s linear infinite;"></div>
+        <div data-anim="1" style="position:absolute;inset:14px;border-radius:50%;background:var(--color-accent-200);filter:blur(18px);animation:glow-pulse 4.5s ease-in-out infinite;"></div>
+        <img src="app_logo.jpg" alt="Sadhana Om logo" style="position:relative;width:96px;height:96px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-lg);">
+      </div>
+      <span style="font-family:var(--font-heading);font-size:26px;color:var(--color-text);">Sadhana</span>
+      <span style="display:block;font-size:14px;color:var(--color-accent-700);letter-spacing:0.02em;margin-top:2px;">Your Spiritual Companion</span>
+    </div>
+
+    <div style="display:flex;gap:clamp(28px,5vw,64px);align-items:flex-start;flex-wrap:wrap;">
+      <div style="flex:1 1 420px;min-width:0;">
+        <h1 style="font-size:clamp(36px,5.2vw,58px);line-height:1.08;margin:0 0 var(--space-4);letter-spacing:-0.015em;">
+          <span style="display:block;">Your daily return</span>
+          <span style="display:block;">to sacred practice.</span>
+        </h1>
+        <p style="font-size:17px;line-height:1.6;max-width:52ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:0 0 var(--space-6);">
+          Mindful Pause, Panchang, japa counter, mantras &amp; temples — Sadhana is your Hindu companion for a busy, phone-heavy life. Private, on-device, and built with devotion.
+        </p>
+        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-4);">
+          <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:56px;">
+          </a>
+          <a href="#mindful-pause" class="btn btn-ghost">See Mindful Pause →</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            4.8 · Editor's pick
+          </span>
+          <span class="tag tag-neutral">Free · Android</span>
+          <span class="tag tag-outline">No ads, ever</span>
+        </div>
+      </div>
+      <div style="flex:0 1 320px;min-width:260px;display:flex;justify-content:center;">
+        <div class="phone-ph-lg">
+          <div style="font-size:48px;">🕉️</div>
+          <div style="font-family:var(--font-heading);font-size:20px;color:color-mix(in srgb, var(--color-text) 55%, transparent);text-align:center;">Sadhana</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Mindful Pause ── -->
+  <section id="mindful-pause" style="background:var(--color-neutral-900);color:var(--color-neutral-100);padding:clamp(56px,8vw,96px) clamp(20px,5vw,64px);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;gap:clamp(32px,5vw,72px);align-items:center;flex-wrap:wrap-reverse;">
+      <div style="flex:1 1 420px;min-width:0;">
+        <span style="font-family:'Noto Sans Devanagari',var(--font-heading);font-size:15px;color:var(--color-accent-300);">मौन विराम</span>
+        <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb, var(--color-neutral-100) 55%, transparent);margin-left:10px;">Mindful Pause</span>
+        <h2 style="font-size:clamp(28px,3.6vw,40px);line-height:1.15;margin:var(--space-3) 0 var(--space-4);color:var(--color-neutral-100);">Before the scroll, a breath.</h2>
+        <p style="font-size:16px;line-height:1.65;max-width:54ch;color:color-mix(in srgb, var(--color-neutral-100) 80%, transparent);margin:0 0 var(--space-6);">
+          Pick up to three apps that pull you away — Instagram, YouTube, WhatsApp, whatever it is for you. Before any of them open, Sadhana holds the screen for five seconds with a Sanskrit shloka from the Gita, Upanishads or Vedas: a breath, an intention, then you proceed. Watch your streak of resisted impulses grow.
+        </p>
+        <div style="display:grid;gap:var(--space-2);margin-bottom:var(--space-6);">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:color-mix(in srgb, var(--color-neutral-100) 85%, transparent);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-300)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>
+            A fresh verse every time — never the same pause twice
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:color-mix(in srgb, var(--color-neutral-100) 85%, transparent);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-300)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>
+            Choose exactly which apps get the pause — nothing else is touched
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:color-mix(in srgb, var(--color-neutral-100) 85%, transparent);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-300)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M20 6 9 17l-5-5"/></svg>
+            Fully on-device — nothing you open is ever logged or shared
+          </div>
+        </div>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+          <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid color-mix(in srgb, var(--color-neutral-100) 30%, transparent);color:color-mix(in srgb, var(--color-neutral-100) 80%, transparent);">100% on-device</span>
+          <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid color-mix(in srgb, var(--color-neutral-100) 30%, transparent);color:color-mix(in srgb, var(--color-neutral-100) 80%, transparent);">No data collected</span>
+          <span style="font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid color-mix(in srgb, var(--color-neutral-100) 30%, transparent);color:color-mix(in srgb, var(--color-neutral-100) 80%, transparent);">Gita · Upanishads · Vedas</span>
+        </div>
+      </div>
+      <div style="flex:0 1 320px;min-width:260px;display:flex;justify-content:center;position:relative;">
+        <div data-anim="1" style="position:absolute;inset:20px;border-radius:50%;background:var(--color-accent-800);filter:blur(40px);opacity:0.5;animation:glow-pulse 5s ease-in-out infinite;z-index:0;"></div>
+        <div style="position:relative;z-index:1;">
+          <div class="phone-ph-lg phone-ph-dark">
+            <div style="font-size:40px;">🙏</div>
+            <div style="font-family:'Noto Sans Devanagari',var(--font-heading);font-size:18px;color:color-mix(in srgb, white 65%, transparent);text-align:center;">मौन विराम<br><span style="font-size:11px;font-family:var(--font-body);letter-spacing:0.06em;">MINDFUL PAUSE</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Setup Guide ── -->
+  <section id="configure-mindful-pause" style="background:var(--color-surface);padding:clamp(56px,8vw,96px) clamp(20px,5vw,64px);">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div style="max-width:60ch;margin:0 0 var(--space-8);">
+        <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);">Getting started</span>
+        <h2 style="font-size:clamp(28px,3.4vw,38px);margin:var(--space-2) 0 var(--space-3);">Set up Mindful Pause in under a minute</h2>
+        <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Four quick steps and every distracting tap gets a five-second breath first.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-6);">
+        <div>
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;font-family:var(--font-heading);font-size:18px;color:var(--color-accent-700);margin-bottom:var(--space-3);">1</div>
+          <h4 style="font-size:17px;margin:0 0 var(--space-2);">Open Mindful Pause</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">From the Sadhana home screen, tap the Mindful Pause card to enter setup.</p>
+        </div>
+        <div>
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;font-family:var(--font-heading);font-size:18px;color:var(--color-accent-700);margin-bottom:var(--space-3);">2</div>
+          <h4 style="font-size:17px;margin:0 0 var(--space-2);">Choose your apps</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Pick up to three apps that pull your attention most — Instagram, YouTube, WhatsApp or others.</p>
+        </div>
+        <div>
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;font-family:var(--font-heading);font-size:18px;color:var(--color-accent-700);margin-bottom:var(--space-3);">3</div>
+          <h4 style="font-size:17px;margin:0 0 var(--space-2);">Grant accessibility access</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Android needs this one-time permission so Sadhana can detect when a chosen app opens — nothing is read or recorded.</p>
+        </div>
+        <div>
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;font-family:var(--font-heading);font-size:18px;color:var(--color-accent-700);margin-bottom:var(--space-3);">4</div>
+          <h4 style="font-size:17px;margin:0 0 var(--space-2);">Set your pause length</h4>
+          <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Keep the default five seconds or adjust it — then every launch of a chosen app opens with a shloka first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ── -->
+  <section id="features" style="max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,64px);">
+    <div style="max-width:60ch;margin:0 0 var(--space-8);">
+      <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);">Everything else</span>
+      <h2 style="font-size:clamp(28px,3.4vw,38px);margin:var(--space-2) 0 var(--space-3);">Seven more ways to stay connected</h2>
+      <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">From the moment you wake to the moment you rest — Panchang, mantras, japa, temples and more, all in one calm place.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4);">
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🗓️</div><div class="ph-label">पञ्चांग</div></div></div>
+        <div><div class="card-kicker">पञ्चांग</div><div class="card-title">Daily Panchang</div><p class="card-body">Tithi, Nakshatra, Yoga, sunrise/sunset and Rahukaal — computed on-device across 19 Indian zones, plus personalized Tara Balam and Chandra Balam guidance.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">📿</div><div class="ph-label">मन्त्र</div></div></div>
+        <div><div class="card-kicker">मन्त्र</div><div class="card-title">900+ Mantras &amp; Chalisas</div><p class="card-body">All 700 Bhagavad Gita shlokas across 18 chapters — Sanskrit, transliteration and meaning — plus 70+ mantras, chalisas, stotras and aartis, with text-to-speech.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🔢</div><div class="ph-label">जप</div></div></div>
+        <div><div class="card-kicker">जप</div><div class="card-title">Japa Counter</div><p class="card-body">A clean digital mala — 108 beads, haptic feedback, streaks and milestone badges. No account needed.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🏛️</div><div class="ph-label">मन्दिर</div></div></div>
+        <div><div class="card-kicker">मन्दिर</div><div class="card-title">Temple Finder</div><p class="card-body">25+ sacred sites — all 12 Jyotirlingas, the Char Dham, and major Shakti Peethas — with pooja and seva info, booking guidance, and links to official temple sites.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🪔</div><div class="ph-label">उत्सव</div></div></div>
+        <div><div class="card-kicker">उत्सव</div><div class="card-title">Festival Calendar</div><p class="card-body">Upcoming festivals, Ekadashis, Purnimas, Amavasyas and Pradoshams — each with its significance and the deity to honor, for your location.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">☀️</div><div class="ph-label">योजना</div></div></div>
+        <div><div class="card-kicker">योजना</div><div class="card-title">Sadhana Planner</div><p class="card-body">Your morning and evening spiritual routine as a clean timeline, with gentle on-device reminders.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">📱</div><div class="ph-label">विजेट</div></div></div>
+        <div><div class="card-kicker">विजेट</div><div class="card-title">Home Screen Widget</div><p class="card-body">Today's shloka, right on your home screen — refreshing automatically each day.</p></div>
+      </div>
+
+      <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
+        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🕉️</div><div class="ph-label">इष्ट देवता</div></div></div>
+        <div><div class="card-kicker">इष्ट देवता</div><div class="card-title">Personalization</div><p class="card-body">Choose your Ishta Devata and region — theming, Panchang and festival guidance adapt around your chosen path.</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Inline CTA ── -->
+  <section style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,5vw,64px) clamp(56px,8vw,80px);">
+    <div style="background:var(--color-accent-2-100);border-radius:calc(var(--radius-lg)*1.3);padding:clamp(32px,5vw,56px);display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;">
+      <div style="flex:1 1 320px;">
+        <h3 style="font-size:clamp(24px,2.6vw,30px);margin:0 0 var(--space-2);">Begin your Sadhana today</h3>
+        <p style="font-size:15.5px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;max-width:48ch;">Free to download. No ads, no tracking — just your practice.</p>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener" style="flex:none;">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:56px;">
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Philosophy ── -->
+  <section id="philosophy" style="max-width:1280px;margin:0 auto;padding:clamp(24px,4vw,40px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);">
+    <div style="max-width:60ch;margin:0 0 var(--space-8);">
+      <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);">Why Sadhana</span>
+      <h2 style="font-size:clamp(28px,3.4vw,38px);margin:var(--space-2) 0 var(--space-3);">Built with love and devotion</h2>
+      <p style="font-size:16px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">For the Hindu community worldwide — across every path, every generation.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6);">
+      <div>
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;margin-bottom:var(--space-3);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+        </div>
+        <h4 style="font-size:19px;margin:0 0 var(--space-2);">Privacy first</h4>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">No ad SDKs, no background tracking, no third-party sharing. Everything stays on your phone; an optional email sign-in only backs up and restores your data.</p>
+      </div>
+      <div>
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--color-accent-2-200);display:grid;place-items:center;margin-bottom:var(--space-3);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-2-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-8.5C.5 8 2 4 6 4c2 0 3.5 1.2 4.5 2.5C11.5 5.2 13 4 15 4c4 0 5.5 4 3.5 8.5C19 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <h4 style="font-size:19px;margin:0 0 var(--space-2);">Every sampradaya, welcome</h4>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Vaishnavism, Shaivism, Shaktism, Smarthism and Madhwa are honored equally — Sadhana adapts to your Ishta Devata, not the other way around.</p>
+      </div>
+      <div>
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--color-accent-100);display:grid;place-items:center;margin-bottom:var(--space-3);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-700)" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h4 style="font-size:19px;margin:0 0 var(--space-2);">Rooted in tradition</h4>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:0;">Built with care for accuracy — Panchang computed for 19 Indian zones, temples verified against official sources, shlokas rendered faithfully in Sanskrit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Reviews ── -->
+  <section id="reviews" style="background:var(--color-surface);padding:clamp(56px,8vw,96px) clamp(20px,5vw,64px);">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div style="display:flex;align-items:baseline;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-6);">
+        <h2 style="font-size:clamp(28px,3.4vw,38px);margin:0;">Loved by early devotees</h2>
+        <span class="tag tag-outline">Sample reviews</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-8);">
+        <span style="font-family:var(--font-heading);font-size:40px;line-height:1;">4.8</span>
+        <div>
+          <div style="display:flex;gap:2px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span style="font-size:12.5px;color:color-mix(in srgb, var(--color-text) 65%, transparent);">Editor's pick · Google Play</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4);">
+        <div class="card elev-sm">
+          <div style="display:flex;gap:2px;margin-bottom:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="card-body">"Sadhana has become the calm five seconds before I open Instagram — it's genuinely changed how much I scroll."</p>
+          <div class="card-meta">Ananya R.</div>
+        </div>
+        <div class="card elev-sm">
+          <div style="display:flex;gap:2px;margin-bottom:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="card-body">"Finally a Panchang app that works without a single ad or notification nagging me to upgrade."</p>
+          <div class="card-meta">Deepak M. · Chicago</div>
+        </div>
+        <div class="card elev-sm">
+          <div style="display:flex;gap:2px;margin-bottom:2px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="card-body">"The Gita shlokas with meaning are exactly what I needed to start my mornings differently."</p>
+          <div class="card-meta">Priya K. · Chennai</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq" style="max-width:840px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,5vw,64px);">
+    <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);">FAQ</span>
+    <h2 style="font-size:clamp(28px,3.4vw,38px);margin:var(--space-2) 0 var(--space-6);">Common questions</h2>
+    <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+      <details style="background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15.5px;">Is Sadhana free to use?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transition:transform .2s;"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">Yes — every core feature, including Panchang, mantras, the japa counter and Mindful Pause, is free. No ads, no paywalls.</p>
+      </details>
+      <details style="background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15.5px;">Does it work without internet?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transition:transform .2s;"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">Yes. Panchang, mantras, the japa counter and Mindful Pause all run fully on-device — no connection required.</p>
+      </details>
+      <details style="background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15.5px;">Is my data private?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transition:transform .2s;"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">Sadhana collects no data. There are no ad SDKs, no background tracking and no third-party sharing. Everything stays on your phone; an optional email sign-in only backs up your data.</p>
+      </details>
+      <details style="background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15.5px;">Do I need to create an account?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transition:transform .2s;"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">No account is required for any feature. Sign-in is optional, only for backup and restore.</p>
+      </details>
+      <details style="background:var(--color-surface);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);">
+        <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15.5px;">Which traditions does Sadhana support?<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transition:transform .2s;"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">Sadhana respects all major sampradayas equally — Vaishnavism, Shaivism, Shaktism, Smarthism and Madhwa — and adapts to your chosen Ishta Devata.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer style="border-top:1px solid var(--color-divider);padding:clamp(32px,5vw,48px) clamp(20px,5vw,64px);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:var(--space-4);">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <img src="app_logo.jpg" alt="Sadhana logo" style="width:28px;height:28px;border-radius:50%;object-fit:cover;">
+          <span style="font-family:var(--font-heading);font-size:16px;">Sadhana</span>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:48px;">
+        </a>
+      </div>
+      <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;font-size:13px;">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="mailto:support@sadhana.app">Contact Support</a>
+      </div>
+      <div style="font-size:12.5px;color:color-mix(in srgb, var(--color-text) 60%, transparent);">© 2026 Sadhana App</div>
+    </div>
   </footer>
+
 </body>
 </html>
