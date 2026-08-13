@@ -78,6 +78,9 @@
     @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes glow-pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
     @media (prefers-reduced-motion: reduce) { [data-anim] { animation: none !important; } }
+    @media (max-width: 639px) {
+      .phone-ph-lg { max-height: 55vh; width: 100%; }
+    }
     details summary::-webkit-details-marker { display: none; }
     details[open] summary svg { transform: rotate(180deg); }
 
@@ -171,46 +174,49 @@
   </nav>
 
   <!-- ── Hero ── -->
-  <section id="top" style="position:relative;padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);max-width:1280px;margin:0 auto;">
-    <div style="position:absolute;right:-120px;top:-60px;width:380px;height:380px;border-radius:50%;background:var(--color-accent-2-200);filter:blur(50px);opacity:0.55;pointer-events:none;z-index:-1;"></div>
-    <div style="position:absolute;left:-140px;bottom:-100px;width:320px;height:320px;border-radius:50%;background:var(--color-accent-100);filter:blur(60px);opacity:0.6;pointer-events:none;z-index:-1;"></div>
+  <section id="top" style="position:relative;overflow:hidden;padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) clamp(56px,8vw,96px);max-width:1280px;margin:0 auto;">
+    <div style="position:absolute;right:-60px;top:-60px;width:380px;height:380px;border-radius:50%;background:var(--color-accent-2-200);filter:blur(50px);opacity:0.55;pointer-events:none;z-index:0;"></div>
+    <div style="position:absolute;left:-80px;bottom:-100px;width:320px;height:320px;border-radius:50%;background:var(--color-accent-100);filter:blur(60px);opacity:0.6;pointer-events:none;z-index:0;"></div>
 
-    <div style="text-align:center;margin-bottom:clamp(28px,4vw,44px);">
-      <div style="position:relative;width:168px;height:168px;margin:0 auto 18px;display:grid;place-items:center;">
-        <div data-anim="1" style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--color-accent-300);animation:spin-slow 50s linear infinite;"></div>
-        <div data-anim="1" style="position:absolute;inset:16px;border-radius:50%;background:var(--color-accent-200);filter:blur(22px);animation:glow-pulse 4.5s ease-in-out infinite;"></div>
-        <img src="icon.png" alt="Sadhana Om logo" style="position:relative;width:128px;height:128px;border-radius:28px;object-fit:cover;box-shadow:var(--shadow-lg);">
-      </div>
-      <span style="font-family:var(--font-heading);font-size:28px;color:var(--color-text);">Sadhana</span>
-      <span style="display:block;font-size:14px;color:var(--color-accent-700);letter-spacing:0.02em;margin-top:4px;">Your Spiritual Companion</span>
-    </div>
-
-    <div style="display:flex;gap:clamp(28px,5vw,64px);align-items:flex-start;flex-wrap:wrap;">
+    <div style="display:flex;gap:clamp(28px,5vw,64px);align-items:center;flex-wrap:wrap;position:relative;z-index:1;">
       <div style="flex:1 1 420px;min-width:0;">
-        <h1 style="font-size:clamp(36px,5.2vw,58px);line-height:1.08;margin:0 0 var(--space-4);letter-spacing:-0.015em;">
-          <span style="display:block;">Your daily return</span>
-          <span style="display:block;">to sacred practice.</span>
-        </h1>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:var(--space-6);">
+          <div style="position:relative;width:68px;height:68px;display:grid;place-items:center;flex:none;">
+            <div data-anim="1" style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--color-accent-300);animation:spin-slow 50s linear infinite;"></div>
+            <div data-anim="1" style="position:absolute;inset:8px;border-radius:50%;background:var(--color-accent-200);filter:blur(10px);animation:glow-pulse 4.5s ease-in-out infinite;"></div>
+            <img src="icon.png" alt="Sadhana logo" style="position:relative;width:52px;height:52px;border-radius:14px;object-fit:cover;box-shadow:var(--shadow-md);">
+          </div>
+          <div>
+            <div style="font-family:var(--font-heading);font-size:22px;line-height:1.1;">Sadhana</div>
+            <div style="font-size:13px;color:var(--color-accent-700);letter-spacing:0.02em;">Your Spiritual Companion</div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div aria-hidden="true" style="position:absolute;top:-0.15em;left:-0.05em;font-family:'Noto Sans Devanagari',serif;font-size:clamp(96px,14vw,180px);line-height:1;color:color-mix(in srgb,var(--color-accent) 7%,transparent);pointer-events:none;user-select:none;white-space:nowrap;">साधना</div>
+          <h1 style="position:relative;font-size:clamp(36px,5.2vw,58px);line-height:1.08;margin:0 0 var(--space-4);letter-spacing:-0.015em;">
+            <span style="display:block;">Your daily return</span>
+            <span style="display:block;">to sacred practice.</span>
+          </h1>
+        </div>
         <p style="font-size:17px;line-height:1.6;max-width:52ch;color:color-mix(in srgb, var(--color-text) 82%, transparent);margin:0 0 var(--space-6);">
           Mindful Pause, Panchang, japa counter, mantras &amp; temples — Sadhana is your Hindu companion for a busy, phone-heavy life. Private, on-device, and built with devotion.
         </p>
-        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-4);">
+        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:var(--space-3);">
           <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener">
             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height:56px;">
           </a>
-          <a href="#mindful-pause" class="btn btn-ghost">See Mindful Pause →</a>
+        </div>
+        <div style="margin-bottom:var(--space-4);">
+          <a href="#mindful-pause" class="btn btn-ghost" style="padding-left:0;">What is Mindful Pause? →</a>
         </div>
         <div style="display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;">
-          <span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--color-accent-600)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            4.8 · Editor's pick
-          </span>
-          <span class="tag tag-neutral">Free · Android</span>
+          <span class="tag tag-neutral">Works offline</span>
+          <span class="tag tag-neutral">No account needed</span>
           <span class="tag tag-outline">No ads, ever</span>
         </div>
       </div>
       <div style="flex:0 1 320px;min-width:260px;display:flex;justify-content:center;">
-        <div class="phone-ph-lg" style="padding:0;overflow:hidden;">
+        <div class="phone-ph-lg" style="padding:0;overflow:hidden;box-shadow:0 24px 64px color-mix(in srgb,var(--color-neutral-900) 28%,transparent);border-width:3px;">
           <img src="ss-home.png" alt="Sadhana home screen" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
