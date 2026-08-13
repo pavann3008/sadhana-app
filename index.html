@@ -212,7 +212,61 @@
         font-size: 15.5px;
       }
       .nav-cta { margin-left: 0; margin-top: var(--space-3); text-align: center; }
+      /* bottom padding so sticky bar doesn't cover content */
+      body { padding-bottom: 80px; }
     }
+
+    /* — sticky mobile download bar — */
+    .app-install-bar {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      align-items: center; gap: 12px;
+      padding: 13px 16px;
+      padding-bottom: calc(13px + env(safe-area-inset-bottom, 0px));
+      background: color-mix(in srgb, var(--color-bg) 96%, transparent);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-top: 1.5px solid var(--color-accent);
+      box-shadow: 0 -6px 28px color-mix(in srgb, var(--color-text) 7%, transparent);
+      transform: translateY(100%);
+      transition: transform 0.52s cubic-bezier(.34, 1.56, .64, 1);
+    }
+    @media (max-width: 767px) {
+      .app-install-bar { display: flex; }
+    }
+    .app-install-bar.aib-visible { transform: translateY(0); }
+    .aib-icon {
+      width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex: none;
+      box-shadow: 0 2px 10px color-mix(in srgb, var(--color-accent) 28%, transparent);
+    }
+    .aib-text { flex: 1; min-width: 0; line-height: 1; }
+    .aib-name {
+      font-family: var(--font-heading); font-size: 15px;
+      color: var(--color-text); display: block; margin-bottom: 3px;
+    }
+    .aib-sub {
+      font-family: var(--font-body); font-size: 11px;
+      color: color-mix(in srgb, var(--color-text) 52%, transparent); display: block;
+    }
+    .aib-cta {
+      display: inline-block;
+      background: var(--color-accent); color: #fff;
+      font-family: var(--font-body); font-size: 13px; font-weight: 700;
+      border-radius: 999px; padding: 9px 17px; text-decoration: none;
+      white-space: nowrap; flex: none; letter-spacing: 0.01em;
+      transition: filter 0.15s, transform 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .aib-cta:active { transform: scale(0.95); filter: brightness(0.92); }
+    .aib-dismiss {
+      width: 26px; height: 26px; border-radius: 50%; border: none; padding: 0;
+      background: color-mix(in srgb, var(--color-text) 9%, transparent);
+      color: color-mix(in srgb, var(--color-text) 54%, transparent);
+      font-size: 13px; line-height: 1; cursor: pointer; flex: none;
+      display: flex; align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent; transition: background 0.15s;
+    }
+    .aib-dismiss:hover { background: color-mix(in srgb, var(--color-text) 15%, transparent); }
   </style>
   <script type="application/ld+json">
   [
@@ -597,6 +651,17 @@
     </div>
   </footer>
 
+  <!-- ── Sticky mobile download bar ── -->
+  <div class="app-install-bar" id="app-install-bar" role="complementary" aria-label="Download Sadhana">
+    <img src="icon.png" alt="Sadhana app icon" class="aib-icon">
+    <div class="aib-text">
+      <span class="aib-name">Sadhana</span>
+      <span class="aib-sub">Free &middot; No ads &middot; Works offline</span>
+    </div>
+    <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener" class="aib-cta">Get the App</a>
+    <button class="aib-dismiss" id="aib-dismiss" aria-label="Dismiss">&#x2715;</button>
+  </div>
+
   <script>
     // Close mobile nav when any nav link is tapped
     var navToggle = document.getElementById('nav-toggle');
@@ -607,6 +672,22 @@
     document.addEventListener('click', function(e) {
       if (navToggle.checked && !e.target.closest('nav')) { navToggle.checked = false; }
     });
+
+    // Sticky mobile download bar
+    (function() {
+      var bar = document.getElementById('app-install-bar');
+      var dismissBtn = document.getElementById('aib-dismiss');
+      if (!bar || !dismissBtn) return;
+      if (sessionStorage.getItem('aib-dismissed')) return;
+      if (window.innerWidth > 767) return;
+      // Slide up after a short delay so it doesn't compete with page load
+      setTimeout(function() { bar.classList.add('aib-visible'); }, 1400);
+      dismissBtn.addEventListener('click', function() {
+        bar.style.transition = 'transform 0.28s cubic-bezier(.4,0,.2,1)';
+        bar.classList.remove('aib-visible');
+        sessionStorage.setItem('aib-dismissed', '1');
+      });
+    })();
   </script>
 </body>
 </html>
