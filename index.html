@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Sadhana — Your Hindu spiritual companion. Mindful Pause, Panchang, japa counter, mantras & temples. Private, on-device, and built with devotion.">
   <title>Sadhana — Your Spiritual Companion</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕉️</text></svg>">
+  <link rel="icon" type="image/png" href="icon.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&family=Noto+Sans+Devanagari:wght@500;600&display=swap');
 
@@ -176,13 +176,13 @@
     <div style="position:absolute;left:-140px;bottom:-100px;width:320px;height:320px;border-radius:50%;background:var(--color-accent-100);filter:blur(60px);opacity:0.6;pointer-events:none;z-index:-1;"></div>
 
     <div style="text-align:center;margin-bottom:clamp(28px,4vw,44px);">
-      <div style="position:relative;width:132px;height:132px;margin:0 auto 14px;display:grid;place-items:center;">
+      <div style="position:relative;width:168px;height:168px;margin:0 auto 18px;display:grid;place-items:center;">
         <div data-anim="1" style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--color-accent-300);animation:spin-slow 50s linear infinite;"></div>
-        <div data-anim="1" style="position:absolute;inset:14px;border-radius:50%;background:var(--color-accent-200);filter:blur(18px);animation:glow-pulse 4.5s ease-in-out infinite;"></div>
-        <img src="icon.png" alt="Sadhana Om logo" style="position:relative;width:96px;height:96px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow-lg);">
+        <div data-anim="1" style="position:absolute;inset:16px;border-radius:50%;background:var(--color-accent-200);filter:blur(22px);animation:glow-pulse 4.5s ease-in-out infinite;"></div>
+        <img src="icon.png" alt="Sadhana Om logo" style="position:relative;width:128px;height:128px;border-radius:28px;object-fit:cover;box-shadow:var(--shadow-lg);">
       </div>
-      <span style="font-family:var(--font-heading);font-size:26px;color:var(--color-text);">Sadhana</span>
-      <span style="display:block;font-size:14px;color:var(--color-accent-700);letter-spacing:0.02em;margin-top:2px;">Your Spiritual Companion</span>
+      <span style="font-family:var(--font-heading);font-size:28px;color:var(--color-text);">Sadhana</span>
+      <span style="display:block;font-size:14px;color:var(--color-accent-700);letter-spacing:0.02em;margin-top:4px;">Your Spiritual Companion</span>
     </div>
 
     <div style="display:flex;gap:clamp(28px,5vw,64px);align-items:flex-start;flex-wrap:wrap;">
@@ -210,9 +210,8 @@
         </div>
       </div>
       <div style="flex:0 1 320px;min-width:260px;display:flex;justify-content:center;">
-        <div class="phone-ph-lg">
-          <div style="font-size:48px;">🕉️</div>
-          <div style="font-family:var(--font-heading);font-size:20px;color:color-mix(in srgb, var(--color-text) 55%, transparent);text-align:center;">Sadhana</div>
+        <div class="phone-ph-lg" style="padding:0;overflow:hidden;">
+          <img src="ss-home.png" alt="Sadhana home screen" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
       </div>
     </div>
@@ -251,9 +250,8 @@
       <div style="flex:0 1 320px;min-width:260px;display:flex;justify-content:center;position:relative;">
         <div data-anim="1" style="position:absolute;inset:20px;border-radius:50%;background:var(--color-accent-800);filter:blur(40px);opacity:0.5;animation:glow-pulse 5s ease-in-out infinite;z-index:0;"></div>
         <div style="position:relative;z-index:1;">
-          <div class="phone-ph-lg phone-ph-dark">
-            <div style="font-size:40px;">🙏</div>
-            <div style="font-family:'Noto Sans Devanagari',var(--font-heading);font-size:18px;color:color-mix(in srgb, white 65%, transparent);text-align:center;">मौन विराम<br><span style="font-size:11px;font-family:var(--font-body);letter-spacing:0.06em;">MINDFUL PAUSE</span></div>
+          <div class="phone-ph-lg phone-ph-dark" style="padding:0;overflow:hidden;">
+            <img src="ss-mindful-pause.png" alt="Mindful Pause screen" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
         </div>
       </div>
@@ -303,42 +301,42 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-4);">
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🗓️</div><div class="ph-label">पञ्चांग</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-panchang.png" alt="Daily Panchang screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">पञ्चांग</div><div class="card-title">Daily Panchang</div><p class="card-body">Tithi, Nakshatra, Yoga, sunrise/sunset and Rahukaal — computed on-device across 19 Indian zones, plus personalized Tara Balam and Chandra Balam guidance.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">📿</div><div class="ph-label">मन्त्र</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-library.png" alt="Mantra library screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">मन्त्र</div><div class="card-title">900+ Mantras &amp; Chalisas</div><p class="card-body">All 700 Bhagavad Gita shlokas across 18 chapters — Sanskrit, transliteration and meaning — plus 70+ mantras, chalisas, stotras and aartis, with text-to-speech.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🔢</div><div class="ph-label">जप</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-japa.png" alt="Japa counter screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">जप</div><div class="card-title">Japa Counter</div><p class="card-body">A clean digital mala — 108 beads, haptic feedback, streaks and milestone badges. No account needed.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🏛️</div><div class="ph-label">मन्दिर</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-temples.png" alt="Temple finder screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">मन्दिर</div><div class="card-title">Temple Finder</div><p class="card-body">25+ sacred sites — all 12 Jyotirlingas, the Char Dham, and major Shakti Peethas — with pooja and seva info, booking guidance, and links to official temple sites.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🪔</div><div class="ph-label">उत्सव</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-festivals.png" alt="Festival calendar screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">उत्सव</div><div class="card-title">Festival Calendar</div><p class="card-body">Upcoming festivals, Ekadashis, Purnimas, Amavasyas and Pradoshams — each with its significance and the deity to honor, for your location.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">☀️</div><div class="ph-label">योजना</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-reading.png" alt="Personal daily reading screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">योजना</div><div class="card-title">Sadhana Planner</div><p class="card-body">Your morning and evening spiritual routine as a clean timeline, with gentle on-device reminders.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">📱</div><div class="ph-label">विजेट</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-widget.png" alt="Home screen widget" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">विजेट</div><div class="card-title">Home Screen Widget</div><p class="card-body">Today's shloka, right on your home screen — refreshing automatically each day.</p></div>
       </div>
 
       <div style="background:var(--color-surface);border-radius:calc(var(--radius-lg)*1.15);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3);">
-        <div style="display:flex;justify-content:center;"><div class="phone-ph"><div class="ph-emoji">🕉️</div><div class="ph-label">इष्ट देवता</div></div></div>
+        <div style="display:flex;justify-content:center;"><div class="phone-ph" style="padding:0;overflow:hidden;"><img src="ss-shloka.png" alt="Shloka reading screen" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div>
         <div><div class="card-kicker">इष्ट देवता</div><div class="card-title">Personalization</div><p class="card-body">Choose your Ishta Devata and region — theming, Panchang and festival guidance adapt around your chosen path.</p></div>
       </div>
 
