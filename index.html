@@ -169,6 +169,50 @@
     }
     .ph-dark-label { color: color-mix(in srgb, white 55%, transparent); }
     .phone-ph > img, .phone-ph-lg > img { border-radius: inherit; object-position: top center; }
+
+    /* — hamburger nav — */
+    .nav-toggle-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      cursor: pointer; padding: 6px; flex: none; border-radius: var(--radius-sm);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-burger:hover { background: color-mix(in srgb, var(--color-text) 6%, transparent); }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--color-text); border-radius: 2px;
+      transition: transform 0.28s cubic-bezier(.4,0,.2,1), opacity 0.18s, width 0.18s;
+      transform-origin: center;
+    }
+    .nav-toggle-input:checked ~ .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle-input:checked ~ .nav-burger span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-toggle-input:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-links { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+    .nav-links > a { color: inherit; font-size: 14px; text-decoration: none; white-space: nowrap; }
+    .nav-links > a:not(.btn):hover { color: var(--color-accent); }
+    .nav-cta { margin-left: var(--space-2); }
+    @media (max-width: 767px) {
+      .nav-burger { display: flex; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0; z-index: 49;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: color-mix(in srgb, var(--color-bg) 97%, transparent);
+        backdrop-filter: blur(18px);
+        padding: 0 clamp(20px,5vw,48px) var(--space-4);
+        border-bottom: 1px solid var(--color-divider);
+        box-shadow: 0 12px 32px color-mix(in srgb, var(--color-neutral-900) 14%, transparent);
+        opacity: 0; pointer-events: none;
+        transform: translateY(-6px);
+        transition: opacity 0.22s cubic-bezier(.4,0,.2,1), transform 0.22s cubic-bezier(.4,0,.2,1);
+      }
+      .nav-toggle-input:checked ~ .nav-links { opacity: 1; pointer-events: auto; transform: translateY(0); }
+      .nav-links > a:not(.btn) {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--color-divider);
+        font-size: 15.5px;
+      }
+      .nav-cta { margin-left: 0; margin-top: var(--space-3); text-align: center; }
+    }
   </style>
   <script type="application/ld+json">
   [
@@ -179,20 +223,24 @@
 </head>
 <body>
 
-  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-4);padding:var(--space-3) clamp(20px,5vw,64px);background:color-mix(in srgb, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider);">
-    <a href="#top" style="display:flex;align-items:center;gap:10px;margin-right:auto;color:inherit;">
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:var(--space-4);padding:var(--space-3) clamp(20px,5vw,64px);background:color-mix(in srgb, var(--color-bg) 92%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--color-divider);">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;margin-right:auto;color:inherit;text-decoration:none;flex:none;">
       <img src="icon.png" alt="Sadhana logo" style="width:34px;height:34px;border-radius:50%;object-fit:cover;">
       <span style="font-family:var(--font-heading);font-size:19px;">Sadhana</span>
     </a>
-    <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
-      <a href="#mindful-pause" style="color:inherit;font-size:14px;">Mindful Pause</a>
-      <a href="#configure-mindful-pause" style="color:inherit;font-size:14px;">Setup Guide</a>
-      <a href="#features" style="color:inherit;font-size:14px;">Features</a>
-      <a href="#philosophy" style="color:inherit;font-size:14px;">Philosophy</a>
-      <a href="#reviews" style="color:inherit;font-size:14px;">Reviews</a>
-      <a href="#faq" style="color:inherit;font-size:14px;">FAQ</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true">
+    <label for="nav-toggle" class="nav-burger" aria-label="Open navigation menu" role="button">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav-links">
+      <a href="#mindful-pause">Mindful Pause</a>
+      <a href="#configure-mindful-pause">Setup Guide</a>
+      <a href="#features">Features</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Get the App</a>
     </div>
-    <a href="https://play.google.com/store/apps/details?id=app.sadhana&amp;hl=en_IN" target="_blank" rel="noopener" class="btn btn-primary">Get the App</a>
   </nav>
 
   <!-- ── Hero ── -->
@@ -549,5 +597,16 @@
     </div>
   </footer>
 
+  <script>
+    // Close mobile nav when any nav link is tapped
+    var navToggle = document.getElementById('nav-toggle');
+    document.querySelectorAll('.nav-links a').forEach(function(a) {
+      a.addEventListener('click', function() { navToggle.checked = false; });
+    });
+    // Close on outside tap
+    document.addEventListener('click', function(e) {
+      if (navToggle.checked && !e.target.closest('nav')) { navToggle.checked = false; }
+    });
+  </script>
 </body>
 </html>
